@@ -46,6 +46,10 @@
           object-fit: cover;
           border-radius: 0;
         }
+        
+        .container-fluid.CustomFlex {
+        display: none !important;
+        }
       </style>
   `;
   document.body.appendChild(container);
