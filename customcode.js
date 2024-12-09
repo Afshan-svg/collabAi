@@ -68,7 +68,7 @@
 </defs>
 </svg>
                     </div>
-                    <div id="assistant-embed" style="position:fixed;bottom:20px;right:20px;width:510px;height:580px;border:1px solid #ccc;border-radius:10px;display:none;background-color:${color};z-index:9999;">
+                    <div id="assistant-embed" style="position:fixed;bottom:20px;right:20px;width:510px;height:660px;border:1px solid #ccc;border-radius:10px;display:none;background-color:${color};z-index:9999;">
                         <div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background: ${queryThemeColor};border-top-left-radius:10px;border-top-right-radius:10px;">
                             <h4 style="margin:0;color:white;font-size:16px;">${assistantName} Assistant</h4>
                             <button id="minimize-button" style="border:none;background:transparent;cursor:pointer;font-size:20px;">
