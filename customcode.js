@@ -7,16 +7,6 @@
                 return;
             }
 
-              window.addEventListener("DOMContentLoaded", function () {
-      const header = document.querySelector(".navbar");
-      if (header) {
-          header.style.display = "none";
-          console.log('Header hidden');
-      } else {
-          console.error('Header not found');
-      }
-  });
-
             const assistantName = scriptTag.getAttribute('data-assistant-name');
             const assistantId = scriptTag.getAttribute('data-assistant-id');
             const color = scriptTag.getAttribute('data-bg-color') || 'rgb(247, 245, 242)';
