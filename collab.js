@@ -72,4 +72,12 @@
       document.getElementById("assistant-embed").style.display = "none";
       document.getElementById("chatbot-icon").style.display = "flex";
   };
+
+  window.addEventListener("load", function () {
+    const targetDiv = document.querySelector(".container-fluid.CustomFlex");
+    if (targetDiv) {
+        targetDiv.style.display = "none";
+    }
+});
+
 })();
