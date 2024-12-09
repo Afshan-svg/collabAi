@@ -108,15 +108,44 @@
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
 
-            window.addEventListener("DOMContentLoaded", function () {
-           const header = document.querySelector(".navbar");
-           if (header) {
-           header.style.display = "none";
-           console.log('Header hidden');
-      }     else {
-          console.error('Header not found');
-      }
-  });
+         window.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM fully loaded and parsed. Starting header hiding process...");
+
+    const header = document.querySelector(".navbar");
+
+    if (!header) {
+        console.error("Header with class '.navbar' not found on initial DOMContentLoaded event.");
+        console.log("Checking DOM structure for clues...");
+        console.log("Body content at this point:", document.body.innerHTML);
+    } else {
+        console.log("Header found:", header);
+        try {
+            header.style.display = "none";
+            console.log("Header successfully hidden.");
+        } catch (error) {
+            console.error("Error while trying to hide the header:", error);
+        }
+    }
+
+    // Add a fallback check with MutationObserver to detect dynamic loading of the header
+    const observer = new MutationObserver(() => {
+        const dynamicHeader = document.querySelector(".navbar");
+        if (dynamicHeader) {
+            console.log("Header dynamically loaded, attempting to hide it.");
+            try {
+                dynamicHeader.style.display = "none";
+                console.log("Header successfully hidden after dynamic load.");
+                observer.disconnect(); // Stop observing
+            } catch (error) {
+                console.error("Error while trying to hide the dynamically loaded header:", error);
+            }
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    console.log("MutationObserver added to monitor dynamic DOM changes.");
+});
+
 
             // Icon click handler
             const chatbotIcon = document.getElementById("chatbot-icon");
