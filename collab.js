@@ -9,6 +9,8 @@
   const assistantId = scriptTag.getAttribute('data-assistant-id');
   const container = document.createElement("div");
 
+  console.log('Embedded script loaded');
+  
   container.innerHTML = `
       <div id="assistant-embed-container">
         <div id="chatbot-icon" style="position:fixed;bottom:40px;right:50px;width:120px;height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bounce 2s infinite;z-index:9999;">
@@ -58,7 +60,8 @@
   document.body.appendChild(container);
 
   if (assistantName && assistantId) {
-      document.getElementById("chatbot-iframe").src = `https://collabai.buildyourai.consulting/agents/${assistantId}`;
+      document.getElementById("chatbot-iframe").src = `https://collabai.buildyourai.consulting/${assistantId}`;
+      console.log(`Iframe src set to: https://collabai.buildyourai.consulting/${assistantId}`);
   } else {
       console.error("Assistant name or ID not provided.");
   }
@@ -66,16 +69,23 @@
   document.getElementById("chatbot-icon").onclick = function () {
       document.getElementById("assistant-embed").style.display = "block";
       document.getElementById("chatbot-icon").style.display = "none";
+      console.log('Chatbot icon clicked, assistant embed shown');
   };
+
   document.getElementById("minimize-button").onclick = function () {
       document.getElementById("assistant-embed").style.display = "none";
       document.getElementById("chatbot-icon").style.display = "flex";
+      console.log('Minimize button clicked, assistant embed hidden');
   };
 
   window.addEventListener("load", function () {
     const header = document.querySelector(".navbar");
+    console.log('Header element:', header);
     if (header) {
         header.style.display = "none";
+        console.log('Header hidden');
+    } else {
+        console.error('Header not found');
     }
   });
 })();
