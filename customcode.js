@@ -1,7 +1,7 @@
 (function (window) {
     window.YourChatbot = {
         init: function () {
-            const scriptTag = document.querySelector('script[src*="customise-chatbot.js"]');
+            const scriptTag = document.querySelector('script[src*="customcode.js"]');
             if (!scriptTag) {
                 console.error("Chatbot script tag not found.");
                 return;
@@ -107,7 +107,7 @@
                 return;
             }
 
-            const baseURL = `https://tutorgpt.managedcoder.com/assistants/${assistantName}/${assistantId}`;
+            const baseURL = `http://localhost:3000/agents/${assistantId}?embedded=true`;
             const iframeSrc = `${baseURL}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(themeColor)}&isAuthenticated=true`;
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
