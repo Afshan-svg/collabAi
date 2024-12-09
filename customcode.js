@@ -108,6 +108,16 @@
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
 
+            window.addEventListener("DOMContentLoaded", function () {
+           const header = document.querySelector(".navbar");
+           if (header) {
+           header.style.display = "none";
+           console.log('Header hidden');
+      }     else {
+          console.error('Header not found');
+      }
+  });
+
             // Icon click handler
             const chatbotIcon = document.getElementById("chatbot-icon");
             chatbotIcon.onclick = function () {
