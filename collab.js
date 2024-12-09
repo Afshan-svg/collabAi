@@ -10,7 +10,7 @@
   const container = document.createElement("div");
 
   console.log('Embedded script loaded');
-  
+
   container.innerHTML = `
       <div id="assistant-embed-container">
         <div id="chatbot-icon" style="position:fixed;bottom:40px;right:50px;width:120px;height:120px;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bounce 2s infinite;z-index:9999;">
@@ -52,15 +52,15 @@
           border-radius: 0;
         }
 
-        .navbar {
-          display: none !important; /* Hide the entire header */
+        #assistant-embed-container .navbar {
+          display: none !important;
         }
       </style>
   `;
   document.body.appendChild(container);
 
   if (assistantName && assistantId) {
-      document.getElementById("chatbot-iframe").src = `https://collabai.buildyourai.consulting/${assistantId}`;
+      document.getElementById("chatbot-iframe").src = `https://collabai.buildyourai.consulting/${assistantId}?embedded=true`;
       console.log(`Iframe src set to: https://collabai.buildyourai.consulting/${assistantId}`);
   } else {
       console.error("Assistant name or ID not provided.");
@@ -78,14 +78,13 @@
       console.log('Minimize button clicked, assistant embed hidden');
   };
 
-  window.addEventListener("load", function () {
-    const header = document.querySelector(".navbar");
-    console.log('Header element:', header);
-    if (header) {
-        header.style.display = "none";
-        console.log('Header hidden');
-    } else {
-        console.error('Header not found');
-    }
+  window.addEventListener("DOMContentLoaded", function () {
+      const header = document.querySelector(".navbar");
+      if (header) {
+          header.style.display = "none";
+          console.log('Header hidden');
+      } else {
+          console.error('Header not found');
+      }
   });
 })();
