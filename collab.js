@@ -59,6 +59,25 @@
       .embed-button-hide{
           display: none;
         }
+
+        @media (max-width: 425px) {
+  .botMessageWrapper {
+    max-width: 90%;  
+    min-width: unset;
+    flex-direction: column;
+    column-gap: 0;
+    padding: 8px;
+    left: 20px;
+    margin-right: 40px;
+  }
+  .botMessageMainContainer {
+    min-width: unset;
+  }
+  .infinite-scroll-component {
+    overflow-x: hidden !important; 
+    width: 100% !important;  
+  }
+}
       </style>
   `;
   document.body.appendChild(container);
