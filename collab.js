@@ -59,38 +59,6 @@
         .embed-button-hide {
           display: none;
         }
-
-        /* Media Query for small screens */
-        @media (max-width: 425px) {
-          .botMessageWrapper {
-            max-width: 100%; 
-            min-width: unset;
-            flex-direction: column; 
-            column-gap: 0; 
-            padding: 8px; 
-            left: -218px; 
-          }
-        }
-        #assistant-embed-container .botMessageWrapper {
-  max-width: 100% !important;
-  min-width: unset !important;
-  flex-direction: column !important;
-  column-gap: 0 !important;
-  padding: 8px !important;
-  left: -218px !important;
-}
-
-@media (max-width: 425px) {
-  #assistant-embed-container .botMessageWrapper {
-    max-width: 100% !important;
-    min-width: unset !important;
-    flex-direction: column !important;
-    column-gap: 0 !important;
-    padding: 8px !important;
-    left: -218px !important;
-  }
-}
-
       </style>
   `;
   document.body.appendChild(container);
@@ -122,5 +90,22 @@
       } else {
           console.error('Header not found');
       }
+
+      // Check for botMessageWrapper class and apply CSS
+      const observer = new MutationObserver(() => {
+          const botMessageWrapper = document.querySelector(".botMessageWrapper");
+          if (botMessageWrapper) {
+              botMessageWrapper.style.maxWidth = "100%";
+              botMessageWrapper.style.minWidth = "unset";
+              botMessageWrapper.style.flexDirection = "column";
+              botMessageWrapper.style.columnGap = "0";
+              botMessageWrapper.style.padding = "8px";
+              botMessageWrapper.style.left = "-218px";
+              console.log('Applied styles to botMessageWrapper');
+          }
+      });
+
+      // Observe the document for changes
+      observer.observe(document.body, { childList: true, subtree: true });
   });
 })();
