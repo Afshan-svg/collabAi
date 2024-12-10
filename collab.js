@@ -96,17 +96,21 @@
   const observer = new MutationObserver(function (mutationsList) {
       mutationsList.forEach((mutation) => {
           const elements = document.querySelectorAll(".botMessageWrapper");
-          elements.forEach((element) => {
-              if (!element.style.maxWidth) { // Apply styles only once
-                  element.style.maxWidth = "100%";
-                  element.style.minWidth = "unset";
-                  element.style.flexDirection = "column";
-                  element.style.columnGap = "0";
-                  element.style.padding = "8px";
-                  element.style.left = "-218px";
-                  console.log("Applied styles to .botMessageWrapper");
-              }
-          });
+          if (elements.length > 0) {
+              console.log(`${elements.length} .botMessageWrapper elements found`);
+              elements.forEach((element) => {
+                  if (!element.classList.contains("styled-bot-message")) {
+                      element.style.maxWidth = "100%";
+                      element.style.minWidth = "unset";
+                      element.style.flexDirection = "column";
+                      element.style.columnGap = "0";
+                      element.style.padding = "8px";
+                      element.style.left = "-218px";
+                      element.classList.add("styled-bot-message"); // Mark as styled
+                      console.log("Applied styles to .botMessageWrapper");
+                  }
+              });
+          }
       });
   });
 
