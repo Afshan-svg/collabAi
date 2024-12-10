@@ -56,7 +56,7 @@
           display: none !important;
         }
         
-        .embed-button-hide {
+      .embed-button-hide{
           display: none;
         }
       </style>
@@ -90,22 +90,25 @@
       } else {
           console.error('Header not found');
       }
-
-      // Check for botMessageWrapper class and apply CSS
-      const observer = new MutationObserver(() => {
-          const botMessageWrapper = document.querySelector(".botMessageWrapper");
-          if (botMessageWrapper) {
-              botMessageWrapper.style.maxWidth = "100%";
-              botMessageWrapper.style.minWidth = "unset";
-              botMessageWrapper.style.flexDirection = "column";
-              botMessageWrapper.style.columnGap = "0";
-              botMessageWrapper.style.padding = "8px";
-              botMessageWrapper.style.left = "-218px";
-              console.log('Applied styles to botMessageWrapper');
-          }
-      });
-
-      // Observe the document for changes
-      observer.observe(document.body, { childList: true, subtree: true });
   });
+
+  // MutationObserver to detect and style botMessageWrapper
+  const observer = new MutationObserver(function (mutationsList) {
+      mutationsList.forEach((mutation) => {
+          const elements = document.querySelectorAll(".botMessageWrapper");
+          elements.forEach((element) => {
+              if (!element.style.maxWidth) { // Apply styles only once
+                  element.style.maxWidth = "100%";
+                  element.style.minWidth = "unset";
+                  element.style.flexDirection = "column";
+                  element.style.columnGap = "0";
+                  element.style.padding = "8px";
+                  element.style.left = "-218px";
+                  console.log("Applied styles to .botMessageWrapper");
+              }
+          });
+      });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
