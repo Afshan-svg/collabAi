@@ -56,8 +56,20 @@
           display: none !important;
         }
         
-      .embed-button-hide{
+        .embed-button-hide {
           display: none;
+        }
+
+        /* Media Query for small screens */
+        @media (max-width: 425px) {
+          .botMessageWrapper {
+            max-width: 100%; 
+            min-width: unset;
+            flex-direction: column; 
+            column-gap: 0; 
+            padding: 8px; 
+            left: -218px; 
+          }
         }
       </style>
   `;
