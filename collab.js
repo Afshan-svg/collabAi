@@ -71,6 +71,26 @@
             left: -218px; 
           }
         }
+        #assistant-embed-container .botMessageWrapper {
+  max-width: 100% !important;
+  min-width: unset !important;
+  flex-direction: column !important;
+  column-gap: 0 !important;
+  padding: 8px !important;
+  left: -218px !important;
+}
+
+@media (max-width: 425px) {
+  #assistant-embed-container .botMessageWrapper {
+    max-width: 100% !important;
+    min-width: unset !important;
+    flex-direction: column !important;
+    column-gap: 0 !important;
+    padding: 8px !important;
+    left: -218px !important;
+  }
+}
+
       </style>
   `;
   document.body.appendChild(container);
