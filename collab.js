@@ -92,27 +92,52 @@
       }
   });
 
-  // MutationObserver to detect and style botMessageWrapper
-  const observer = new MutationObserver(function (mutationsList) {
-      mutationsList.forEach((mutation) => {
-          const elements = document.querySelectorAll(".botMessageWrapper");
-          if (elements.length > 0) {
-              console.log(`${elements.length} .botMessageWrapper elements found`);
-              elements.forEach((element) => {
-                  if (!element.classList.contains("styled-bot-message")) {
-                      element.style.maxWidth = "100%";
-                      element.style.minWidth = "unset";
-                      element.style.flexDirection = "column";
-                      element.style.columnGap = "0";
-                      element.style.padding = "8px";
-                      element.style.left = "-218px";
-                      element.classList.add("styled-bot-message"); // Mark as styled
-                      console.log("Applied styles to .botMessageWrapper");
-                  }
-              });
-          }
-      });
-  });
+  // Wait for iframe to load before observing changes inside it
+  const iframe = document.getElementById("chatbot-iframe");
+  iframe.onload = function () {
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-  observer.observe(document.body, { childList: true, subtree: true });
+      // MutationObserver to detect and style botMessageWrapper inside the iframe
+      const iframeObserver = new MutationObserver(function (mutationsList) {
+          mutationsList.forEach((mutation) => {
+              const elements = iframeDocument.querySelectorAll(".botMessageWrapper");
+              if (elements.length > 0) {
+                  console.log(`${elements.length} .botMessageWrapper elements found`);
+                  elements.forEach((element) => {
+                      if (!element.classList.contains("styled-bot-message")) {
+                          element.style.maxWidth = "100%";
+                          element.style.minWidth = "unset";
+                          element.style.flexDirection = "column";
+                          element.style.columnGap = "0";
+                          element.style.padding = "8px";
+                          element.style.left = "-218px";
+                          element.classList.add("styled-bot-message"); // Mark as styled
+                          console.log("Applied styles to .botMessageWrapper");
+                      }
+                  });
+              }
+          });
+      });
+
+      iframeObserver.observe(iframeDocument.body, { childList: true, subtree: true });
+  };
+
+  // Fallback polling mechanism in case MutationObserver does not catch the botMessageWrapper
+  setInterval(() => {
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      if (iframeDocument) {
+          const elements = iframeDocument.querySelectorAll(".botMessageWrapper");
+          elements.forEach((element) => {
+              if (!element.classList.contains("styled-bot-message")) {
+                  element.style.maxWidth = "100%";
+                  element.style.minWidth = "unset";
+                  element.style.flexDirection = "column";
+                  element.style.columnGap = "0";
+                  element.style.padding = "8px";
+                  element.style.left = "-218px";
+                  element.classList.add("styled-bot-message"); // Mark as styled
+              }
+          });
+      }
+  }, 1000); // Check every second
 })();
