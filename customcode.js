@@ -16,25 +16,24 @@
 
             console.log("Chatbot API initialized with options:", { assistantName, assistantId, color, textColor, fontSize, themeColor });
 
-            // Extract themeColor from query parameters
+           
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
             }
 
-            // Get theme color from query string
-            const queryThemeColor = getQueryParam('themeColor') || themeColor; // Default to provided themeColor or fallback
+            const queryThemeColor = getQueryParam('themeColor') || themeColor; 
 
-            // Update the CSS variable
+           
             document.documentElement.style.setProperty('--main-bg-color', queryThemeColor);
 
-            // Optional: Apply the color directly to the main element (if needed)
+          
             const mainElement = document.querySelector('main');
             if (mainElement) {
                 mainElement.style.backgroundColor = queryThemeColor;
             }
 
-            // Add FontAwesome stylesheet
+      
             const link = document.createElement("link");
             link.rel = "stylesheet";
             link.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css";
@@ -96,7 +95,7 @@
             `;
             document.body.appendChild(container);
 
-            // Set iframe source
+           
             const iframe = document.getElementById("chatbot-iframe");
             if (!iframe) {
                 console.error("Chatbot iframe not found.");
@@ -109,7 +108,6 @@
             iframe.src = iframeSrc;
 
 
-            // Icon click handler
             const chatbotIcon = document.getElementById("chatbot-icon");
             chatbotIcon.onclick = function () {
                 console.log("Chatbot icon clicked, opening chat window.");
@@ -117,7 +115,6 @@
                 chatbotIcon.style.display = "none";
             };
 
-            // Minimize button handler
             const minimizeButton = document.getElementById("minimize-button");
             minimizeButton.onclick = function () {
                 console.log("Minimize button clicked, closing chat window.");
