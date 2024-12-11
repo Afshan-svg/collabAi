@@ -111,12 +111,10 @@
       }
   });
 
-  // Wait for iframe to load before observing changes inside it
   const iframe = document.getElementById("chatbot-iframe");
   iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-      // MutationObserver to detect and style botMessageWrapper inside the iframe
       const iframeObserver = new MutationObserver(function (mutationsList) {
           mutationsList.forEach((mutation) => {
               const elements = iframeDocument.querySelectorAll(".botMessageWrapper");
@@ -130,7 +128,7 @@
                           element.style.columnGap = "0";
                           element.style.padding = "8px";
                           element.style.left = "-218px";
-                          element.classList.add("styled-bot-message"); // Mark as styled
+                          element.classList.add("styled-bot-message"); 
                           console.log("Applied styles to .botMessageWrapper");
                       }
                   });
@@ -141,7 +139,6 @@
       iframeObserver.observe(iframeDocument.body, { childList: true, subtree: true });
   };
 
-  // Fallback polling mechanism in case MutationObserver does not catch the botMessageWrapper
   setInterval(() => {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       if (iframeDocument) {
@@ -154,9 +151,9 @@
                   element.style.columnGap = "0";
                   element.style.padding = "8px";
                   element.style.left = "-218px";
-                  element.classList.add("styled-bot-message"); // Mark as styled
+                  element.classList.add("styled-bot-message");
               }
           });
       }
-  }, 1000); // Check every second
+  }, 1000); 
 })();
