@@ -83,8 +83,8 @@
   document.body.appendChild(container);
 
   if (assistantName && assistantId) {
-      // document.getElementById("chatbot-iframe").src = `http://localhost:3000/agents/${assistantId}?embedded=true`;
-    document.getElementById("chatbot-iframe").src = ` https://collaborativeai-staging.managedcoder.com/agents/${assistantId}?embedded=true`;
+      document.getElementById("chatbot-iframe").src = `http://localhost:3000/agents/${assistantId}?embedded=true`;
+    // document.getElementById("chatbot-iframe").src = ` https://collaborativeai-staging.managedcoder.com/agents/${assistantId}?embedded=true`;
       console.log(`Iframe src set to: https://collabai.buildyourai.consulting/${assistantId}`);
   } else {
       console.error("Assistant name or ID not provided.");
