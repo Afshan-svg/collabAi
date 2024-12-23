@@ -102,7 +102,7 @@
                 return;
             }
 
-            const baseURL = `https://collabai.buildyourai.consulting/agents/${assistantId}`;
+            const baseURL = `https://collaborativeai-dev.managedcoder.com/agents/${assistantId}`;
             const iframeSrc = `${baseURL}?color=${encodeURIComponent(color)}&textColor=${encodeURIComponent(textColor)}&fontSize=${encodeURIComponent(fontSize)}&themeColor=${encodeURIComponent(queryThemeColor)}&embedded=true`;
             console.log(`Iframe source set to: ${iframeSrc}`);
             iframe.src = iframeSrc;
